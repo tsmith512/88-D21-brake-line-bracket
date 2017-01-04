@@ -10,6 +10,7 @@ module fillet(r, h) {
   }
 }
 
+// The outermost shape
 module bracket() {
   difference() {
     cube([15, 33, 15]);
@@ -24,4 +25,22 @@ module bracket() {
   }
 }
 
-bracket();
+// A single channel in the bracket for one brake line
+module brakeline() {
+  translate([5, 2.5, 0])
+  union() {
+    translate([-(1.25 + 2.5), 0, 0])
+      cylinder(r = 1.25, h = 33);
+
+    translate([(-2.5 - 1.25), (-2.5/2), 0])
+      cube([2.5, 2.5, 33]);
+
+    cylinder(r = 2.5, h = 33);
+
+    translate([0, -2.5, 0])
+      cube([5, 5, 33]);
+  }
+}
+
+// bracket();
+brakeline();
