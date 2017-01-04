@@ -98,6 +98,7 @@ tab();
 
 difference() {
   bracket();
+
   translate([5, 0, -0.1]) scale([1, 1, 1.1])
     channels();
 }
