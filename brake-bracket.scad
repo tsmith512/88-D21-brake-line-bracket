@@ -38,9 +38,21 @@ module brakeline() {
     cylinder(r = 2.5, h = 15);
 
     translate([0, -2.5, 0])
-      cube([5, 5, 15]);
+      cube([6, 5, 15]);
   }
 }
 
-// bracket();
-brakeline();
+// The four channels in the bracket
+module channels() {
+  for (i = [0:3]) {
+    offset = i * (2.5 + 5) + 2.5;
+    translate([0, offset, 0])
+      brakeline();
+  }
+}
+
+difference() {
+  bracket();
+  translate([5, 0, -0.1]) scale([1, 1, 1.1])
+    channels();
+}
