@@ -54,11 +54,16 @@ module channels() {
 module tab() {
   // The vertical support
   difference() {
-    cube([7, 1.5, 10.5]);
+    translate([-1, 0, 0])
+      cube([8, 1.5, 10.5]);
 
-    scale([1, 1.1, 1]) translate([0, -.1, 0]) rotate([0, 55, 0])
+    // Bottom angle cut
+    scale([1, 1.1, 1]) translate([1, -.1, 0]) rotate([0, 50, 0])
       cube([7, 1.5, 10.5]);
+    scale([1, 1.1, 1]) translate([-.1, -.1, -.1])
+      cube([3, 1.5, 1]);
 
+    // Top angle cut
     scale([1, 1.1, 1]) translate([7.5, -.1, 8]) rotate([0, -65, 0])
       cube([7, 1.5, 10.5]);
   }
@@ -88,13 +93,11 @@ module tab() {
   }
 }
 
-// rotate([0, 0, 180])
+translate([0, 12, 2]) rotate([0, 0, 180])
 tab();
 
-/*
 difference() {
   bracket();
   translate([5, 0, -0.1]) scale([1, 1, 1.1])
     channels();
 }
-*/
