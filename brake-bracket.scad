@@ -66,10 +66,18 @@ module tab() {
   // The clippy tabs
   translate([7.75, 0.75, 5]) rotate([0, 0, 135])
   union() {
-    rotate([0, 0, -7.5])
-      cube([1, 6, 3]);
-    rotate([0, 0, 7.5])
-      cube([6, 1, 3]);
+    rotate([0, 0, -9])
+      union() {
+        cube([1, 6, 3]);
+        translate([1, 5, 0]) rotate([0, 0, 30])
+          cube([0.75, 1, 3]);
+      }
+    rotate([0, 0, 9])
+      union() {
+        cube([6, 1, 3]);
+        translate([5, 1, 0]) rotate([0, 0, -30])
+          cube([1, 0.75, 3]);
+      }
   }
 
   translate([0, 0.75, 4.5]) rotate([0, 90, 0])
