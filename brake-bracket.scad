@@ -30,15 +30,15 @@ module brakeline() {
   translate([5, 2.5, 0])
   union() {
     translate([-(1.25 + 2.5), 0, 0])
-      cylinder(r = 1.25, h = 33);
+      cylinder(r = 1.25, h = 15);
 
     translate([(-2.5 - 1.25), (-2.5/2), 0])
-      cube([2.5, 2.5, 33]);
+      cube([2.5, 2.5, 15]);
 
-    cylinder(r = 2.5, h = 33);
+    cylinder(r = 2.5, h = 15);
 
     translate([0, -2.5, 0])
-      cube([5, 5, 33]);
+      cube([5, 5, 15]);
   }
 }
 
