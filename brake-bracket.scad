@@ -45,7 +45,7 @@ module brakeline() {
 
     // Take some oblong notches out of the opening of each channel
     // so the lines have to be "snapped" in and secured.
-    translate([5, -2.5, 7.5]) scale([1, 0.875, 4])
+    translate([5, -2.5, 7.5]) scale([1, 1.125, 4])
       sphere(r = 1);
   }
 }
