@@ -78,7 +78,7 @@ module tab() {
     cylinder(r=2.75, h=2);
 }
 
-translate([-6, 6, (15 + 5.5) / 2]) rotate([0, 90, 0])
+translate([-6, 16.5 - 5, 5.5]) rotate([0, 90, 0])
   tab();
 
 difference() {
