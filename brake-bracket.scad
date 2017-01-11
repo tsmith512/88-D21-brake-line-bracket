@@ -82,18 +82,18 @@ module tab() {
   translate([2.75, 2.75, 0])
     cylinder(r = 2.75, h = 4);
 
-  translate([2.75, (10 - 2.75), 0])
+  translate([2.75, (11 - 2.75), 0])
     cylinder(r = 2.75, h = 4);
 
   translate([0, 2.75, 0])
-    cube([5.5, (10 - 5.5), 4]);
+    cube([5.5, (11 - 5.5), 4]);
 
   // Back support to pass through the wall
-  translate([2.75, (10 - 5.5) + 0.5, 4])
+  translate([2.75, (10.5 - 5.5) + 0.5, 4])
     cylinder(r=2.75, h=2);
 }
 
-translate([-6, 16.5 - 5, 5.5]) rotate([0, 90, 0])
+translate([-6, 16.5 - 4.5, 5.5]) rotate([0, 90, 0])
   tab();
 
 difference() {
