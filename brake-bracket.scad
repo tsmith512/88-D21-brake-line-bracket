@@ -62,49 +62,24 @@ module channels() {
 }
 
 module tab() {
-  // The vertical support
-  difference() {
-    translate([-1, 0, 0])
-      cube([8, 1.5, 10.5]);
+  // The back support. The mounting hole is a rounded
+  // rectangle 10mm x 5.5mm.
+  translate([2.75, 2.75, 0])
+    cylinder(r = 2.75, h = 4);
 
-    // Bottom angle cut
-    scale([1, 1.1, 1]) translate([1, -.1, 0]) rotate([0, 50, 0])
-      cube([7, 1.5, 10.5]);
-    scale([1, 1.1, 1]) translate([-.1, -.1, -.1])
-      cube([3, 1.5, 1]);
+  translate([2.75, (10 - 2.75), 0])
+    cylinder(r = 2.75, h = 4);
 
-    // Top angle cut
-    scale([1, 1.1, 1]) translate([7.5, -.1, 8]) rotate([0, -65, 0])
-      cube([7, 1.5, 10.5]);
-  }
+  translate([0, 2.75, 0])
+    cube([5.5, (10 - 5.5), 4]);
 
-  // The clippy tabs
-  translate([7.75, 0.75, 5]) rotate([0, 0, 135])
-  union() {
-    rotate([0, 0, -9])
-      union() {
-        cube([1, 6, 3]);
-        translate([1, 5, 0]) rotate([0, 0, 30])
-          cube([0.75, 1, 3]);
-      }
-    rotate([0, 0, 9])
-      union() {
-        cube([6, 1, 3]);
-        translate([5, 1, 0]) rotate([0, 0, -30])
-          cube([1, 0.75, 3]);
-      }
-  }
-
-  translate([0, 0.75, 4.5]) rotate([0, 90, 0])
-  intersection() {
-    translate([0, -3, 0])
-      cube([6, 6, 2]);
-    cylinder(r = 3, h = 2);
-  }
+  // Back support to pass through the wall
+  translate([2.75, (10 - 5.5) + 0.5, 4])
+    cylinder(r=2.75, h=2);
 }
 
-translate([0, 12, 2]) rotate([0, 0, 180])
-tab();
+translate([-6, 6, (15 + 5.5) / 2]) rotate([0, 90, 0])
+  tab();
 
 difference() {
   bracket();
