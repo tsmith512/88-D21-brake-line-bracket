@@ -35,6 +35,7 @@ module brakeline() {
     translate([(-2.5 - 1.25), (-2.5/2), 0])
       cube([2.5, 2.5, 15]);
 
+    // Brake lines are 4.75mm (cut 5mm)
     cylinder(r = 2.5, h = 15);
 
     translate([0, -2.5, 0])
@@ -46,8 +47,17 @@ module brakeline() {
 module channels() {
   for (i = [0:3]) {
     offset = i * (2.5 + 5) + 2.5;
-    translate([0, offset, 0])
-      brakeline();
+
+    // The three lower channels are brake lines.
+    // The fourth channel is a vacuum line and it is wider.
+    if (i < 3) {
+      translate([0, offset, 0])
+        brakeline();
+    } else {
+      // 1.35 * 5mm channel = 6.75. Vacuum line is 6.5mm.
+      translate([-1, offset - 1, 0]) scale([1.35, 1.35, 1])
+        brakeline();
+    }
   }
 }
 
