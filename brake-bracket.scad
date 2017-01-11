@@ -16,11 +16,11 @@ module bracket() {
     cube([15, 33, 15]);
 
     union() {
-      translate([0, 0, 8])
-        fillet(4, 17);
-      translate([0, 33, 8])
+      translate([0, 0, 7.5])
+        fillet(4, 15);
+      translate([0, 33, 7.5])
       rotate([0, 0, -90])
-        fillet(4, 17);
+        fillet(4, 15);
     }
   }
 }
@@ -39,7 +39,7 @@ module brakeline() {
     cylinder(r = 2.5, h = 15);
 
     translate([0, -2.5, 0])
-      cube([6, 5, 15]);
+      cube([5, 5, 15]);
   }
 }
 
@@ -84,6 +84,6 @@ translate([-6, 6, (15 + 5.5) / 2]) rotate([0, 90, 0])
 difference() {
   bracket();
 
-  translate([5, 0, -0.1]) scale([1, 1, 1.1])
+  translate([5, 0, 0])
     channels();
 }
