@@ -28,18 +28,25 @@ module bracket() {
 // A single channel in the bracket for one brake line
 module brakeline() {
   translate([5, 2.5, 0])
-  union() {
-    translate([-(1.25 + 2.5), 0, 0])
-      cylinder(r = 1.25, h = 15);
+  difference() {
+    union() {
+      translate([-(1.25 + 2.5), 0, 0])
+        cylinder(r = 1.25, h = 15);
 
-    translate([(-2.5 - 1.25), (-2.5/2), 0])
-      cube([2.5, 2.5, 15]);
+      translate([(-2.5 - 1.25), (-2.5/2), 0])
+        cube([2.5, 2.5, 15]);
 
-    // Brake lines are 4.75mm (cut 5mm)
-    cylinder(r = 2.5, h = 15);
+      // Brake lines are 4.75mm (cut 5mm)
+      cylinder(r = 2.5, h = 15);
 
-    translate([0, -2.5, 0])
-      cube([5, 5, 15]);
+      translate([0, -2.5, 0])
+        cube([5, 5, 15]);
+    }
+
+    // Take some oblong notches out of the opening of each channel
+    // so the lines have to be "snapped" in and secured.
+    translate([5, -2.5, 7.5]) scale([1, 0.875, 4])
+      sphere(r = 1);
   }
 }
 
@@ -54,9 +61,17 @@ module channels() {
       translate([0, offset, 0])
         brakeline();
     } else {
-      // 1.35 * 5mm channel = 6.75. Vacuum line is 6.5mm.
-      translate([-1, offset - 1, 0]) scale([1.35, 1.35, 1])
-        brakeline();
+      // 1.35 * 5mm channel = 6.75. Vacuum line is 6.5mm. We need to intersect
+      // two of these at different X-offsets because we need the holder-bump at
+      // the outside without pushing the back of the slot too close to the back
+      // of the bracket.
+      intersection() {
+        translate([-1, offset - 1, 0]) scale([1.35, 1.35, 1])
+          brakeline();
+
+        translate([-3.5, offset - 1, 0]) scale([1.35, 1.35, 1])
+          brakeline();
+      }
     }
   }
 }
